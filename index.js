@@ -32,16 +32,14 @@ Route.prototype.blocksTravelled = function () {
   return vertTravelled + horzTravelled;
 }
 
-Route.prototype.estimatedTime = function(time) {
-  let d = new Date(time);
-  let n = d.getHours();
-  if (n > 8 || n > 18) {
-    let timeTraveled = blocksTravelled * 2;
-    return timeTravelled
+Route.prototype.estimatedTime = function(isPeakHours) {
+  const blocks = this.blocksTravelled();
+  if (isPeakHours) {
+    return blocks / 2;
   }
-  else 
-    let timeTraveled = blocksTravelled * 3
-    return timeTraveled
+  else {
+    return blocks /3
+  }
   
 };
 
